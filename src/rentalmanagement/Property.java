@@ -6,37 +6,55 @@ public class Property {
     private double rentalRate;
     private boolean isAvailable;
 
-    // Constructor: Create a property and validate its rental rate
     public Property(int propertyID, String description, double rentalRate) {
+
+        // Week 3: Validate PropertyID
+        if (propertyID <= 0) {
+            throw new IllegalArgumentException(
+                "Property ID must be a positive integer."
+            );
+        }
+
+        // Week 3: Validate Description
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                "Description cannot be empty."
+            );
+        }
+
+        // Validate RentalRate
         if (!Double.isFinite(rentalRate) || rentalRate <= 0) {
             throw new IllegalArgumentException(
-                    "Rental rate must be greater than zero."
+                "Rental rate must be greater than zero."
             );
         }
 
         this.propertyID = propertyID;
-        this.description = description;
+        this.description = description.trim();
         this.rentalRate = rentalRate;
         this.isAvailable = true;
     }
 
-    // Update the property description
     public void UpdateDescription(String description) {
-        this.description = description;
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                "Description cannot be empty."
+            );
+        }
+
+        this.description = description.trim();
     }
 
-    // Update the rental rate only if the new rate is valid
     public void UpdateRentalRate(double rentalRate) {
         if (!Double.isFinite(rentalRate) || rentalRate <= 0) {
             throw new IllegalArgumentException(
-                    "Rental rate must be greater than zero."
+                "Rental rate must be greater than zero."
             );
         }
 
         this.rentalRate = rentalRate;
     }
 
-    // Getter methods
     public int getPropertyID() {
         return propertyID;
     }
@@ -53,7 +71,6 @@ public class Property {
         return isAvailable;
     }
 
-    // Update availability when a rental contract is created or terminated
     public void setAvailable(boolean available) {
         this.isAvailable = available;
     }
