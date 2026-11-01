@@ -1,4 +1,3 @@
-
 package rentalmanagement;
 
 import java.time.LocalDate;
@@ -13,7 +12,7 @@ public class RentalContract {
     private double rentAmount;
     private boolean isActive;
 
-    // Constructor: Create a rental contract and validate the dates and property
+    // Constructor: create a rental contract and validate dates and property.
     public RentalContract(
             int contractID,
             Property property,
@@ -21,7 +20,11 @@ public class RentalContract {
             LocalDate startDate,
             LocalDate endDate) {
 
-        // Validate input before changing the property's availability
+        // Week 3: validate ContractID before changing property availability.
+        if (contractID <= 0) {
+            throw new IllegalArgumentException("Contract ID must be a positive integer.");
+        }
+
         if (property == null) {
             throw new IllegalArgumentException("Property cannot be null.");
         }
@@ -42,7 +45,7 @@ public class RentalContract {
             throw new IllegalArgumentException("End date must be after start date.");
         }
 
-        // Initialize contract attributes
+        // Initialize attributes only after all validation checks succeed.
         this.contractID = contractID;
         this.property = property;
         this.tenant = tenant;
@@ -51,11 +54,11 @@ public class RentalContract {
         this.rentAmount = property.getRentalRate();
         this.isActive = true;
 
-        // Mark the property as unavailable
+        // Mark property unavailable only after successful construction.
         property.setAvailable(false);
     }
 
-    // Terminate the rental contract
+    // Terminate the rental contract, with no effect if already terminated.
     public void Terminate() {
         if (isActive) {
             isActive = false;
@@ -63,7 +66,7 @@ public class RentalContract {
         }
     }
 
-    // Getter methods
+    // Getter methods - keep Week 2 names exactly as they were.
     public int getContractID() {
         return contractID;
     }
