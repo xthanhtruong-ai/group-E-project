@@ -1,7 +1,11 @@
-package rentalmanagement;
+package rentalmanagement.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import rentalmanagement.Property;
+import rentalmanagement.PropertyOwner;
+import rentalmanagement.RentalContract;
+import rentalmanagement.Tenant;
 
 /**
  * Controller: receives requests from the View and coordinates Model objects.
